@@ -12,21 +12,16 @@ class Lote {
   }
 }
 
-const Lote1 = new Lote(1, "Audi 2010", "TT", 90000, "Auditt.jpg");
-const Lote2 = new Lote(2, "Audi 2010", "RS6", 95220, "rs62010.jpg");
-const Lote3 = new Lote(3, "BMW 2018", "X6", 76544, "bmwx6.jpg");
-const Lote4 = new Lote(4, "MAZDA 2014", "RX-8", 12780, "Mazdarx8.jpg");
-const Lote5 = new Lote(5, "TOYOTA 2008", "SUPRA", 57579, "toyoyasupra.jpg");
-const Lote6 = new Lote(6, "FERRARI 2022", "458 SPYDER", 997897, "ferrari.jpg");
+const Lote1 = new Lote(1, "Audi 2010", "TT", 150, "Auditt.jpg");
+const Lote2 = new Lote(2, "Audi 2010", "RS6", 280, "rs62010.jpg");
+const Lote3 = new Lote(3, "BMW 2018", "X6", 210, "bmwx6.jpg");
+const Lote4 = new Lote(4, "MAZDA 2014", "RX-8", 170, "Mazdarx8.jpg");
+const Lote5 = new Lote(5, "TOYOTA 2008", "SUPRA", 160, "toyoyasupra.jpg");
+const Lote6 = new Lote(6, "FERRARI 2022", "458 SPYDER", 300, "ferrari.jpg");
 
 Lote1.mostrarInfoLote();
 
 let estanteria = []
-
-
-
-
-
 
 
 
@@ -38,9 +33,9 @@ if (localStorage.getItem("estanteria")) {
   //si no existe, entra al else
   console.log("seteamos por primera vez");
   estanteria.push(Lote1, Lote2, Lote3, Lote4, Lote5, Lote6);
-  localStorage.setItem("estanteria", JSON.stringify(estanteria));
+  //localStorage.setItem("estanteria", JSON.stringify(estanteria));
 }
-console.log(estanteria);
+//console.log(estanteria);
 
 //capturando let
 
@@ -54,6 +49,9 @@ let guardarCarBtn = document.getElementById("guardarCarBtn");
 let inputBuscador = document.querySelector("#buscador");
 let igualIgual = document.getElementById("igualIgual");
 let selector = document.getElementById("selector");
+let modalReservas = document.getElementById("modalReservas")
+let botonReservas = document.getElementById("botonReservas")
+let precioTotal = document.getElementById("precioTotal")
 
 
 //FUNCIONES
@@ -69,15 +67,13 @@ function verAutos(array) {
               <div class="card-body">
                   <h4 class="card-title">${Lote.marca}</h4>
                   <p>Modelo: ${Lote.modelo}</p>
-                  <p class="">Precio: ${Lote.precio}</p>
+                  <p class="">Precio en:<strong> ${Lote.precio}</strong>USD por 24HS</p>
                   <button id="agregarBtn${Lote.id}" class="btn btn-outline-success">Reservar</button>
               </div>
           </div>
     `;
     garajeDiv.appendChild(tingladoSurDiv);
-
     let agregarBtn = document.getElementById(`agregarBtn${Lote.id}`);
-
     agregarBtn.onclick = () => {
       
       agregarReservas(Lote)
@@ -85,30 +81,63 @@ function verAutos(array) {
   }
 }
 
-let autosReservados
-if(localStorage.getItem("carsreser")){
-  autosReservados = JSON.parse(localStorage.getItem("carsreser"))
-}else{
-  autosReservados = []
-  localStorage.setItem("carsreser", autosReservados)
+// let autosReservados
+// if(localStorage.getItem("carsreser")){
+//   autosReservados = JSON.parse(localStorage.getItem("carsreser"))
+// }else{
+//   autosReservados = []
+//   localStorage.setItem("carsreser", autosReservados)
+// }
+
+//REEEMPLAZANDO EL CODIGO DE ARRIBA CON OPERADOR OR
+let autosReservados = JSON.parse(localStorage.getItem("carsreser")) || []
+//console.log (autosReservados)
+
+
+function reservaTotal(array){
+  let acumulador = 0
+  for(let car of array){
+    acumulador = acumulador + car.precio
+  }
+  precioTotal.innerHTML = `El total es <strong>${acumulador}</strong> USD`
 }
 
 function agregarReservas(Lote){
   //console.log(Lote)
-  console.log(`El vehiculo ${Lote.marca} ha sido reservado`)
-autosReservados.push(Lote)
 
-localStorage.setItem("carsreser", JSON.stringify(autosReservados))
+  let caragregado = autosReservados.find((elem)=> elem.id == Lote.id)
+  if(caragregado == undefined){
+    console.log(`El vehiculo ${Lote.marca} ha sido reservado`)
+    autosReservados.push(Lote)
+    localStorage.setItem("carsreser", JSON.stringify(autosReservados))
 console.log(autosReservados)
+  }else{
+    alert("ya tienes agregado el vehiculo")
+  }
 }
 
 
-
+function cargarReservas(array){
+//console.log("funciona boton")
+modalReservas.innerHTML =""
+array.forEach((careservado)=> {
+  console.log(careservado.marca)
+  modalReservas.innerHTML +=
+  `
+  <div class="card" style="width: 18rem;">
+  <div class="card-body">
+  <h4 class="card-title">${careservado.marca}</h4>
+    <p class="card-text">${careservado.modelo}</p>
+    <p class="card-text">Valor: ${careservado.precio}</p>
+    <button class= "btn btn-danger" id="botonEliminar${careservado.id}">Eliminar<i class="fas fa-trash-alt"></i></button>
+  </div>
+</div>
+  `
+})
+reservaTotal(array)
+}
 
 function agregarCars(array) {
-  let inputMarca = document.getElementById("marcaInput");
-  let inputModelo = document.getElementById("modeloInput");
-  let inputPrecio = document.getElementById("precioInput");
 
   //agregarlo con funcion constructora
   const nuevoLote = new Lote(
@@ -138,13 +167,18 @@ function buscarInfo(buscado, array) {
       Lote.marca.toLowerCase().includes(buscado) ||
       Lote.modelo.toLowerCase().includes(buscado)
   );
-  if (busquedaArray.length == 0) {
-    igualIgual.innerHTML = `<h2>No se encuetra el vehiculo solicitado</h2>`;
-    verAutos(busquedaArray);
-  } else {
-    igualIgual.innerHTML = "";
-    verAutos(busquedaArray);
-  }
+
+  // if (busquedaArray.length == 0) {
+  //   igualIgual.innerHTML = `<h2>No se encuetra el vehiculo solicitado</h2>`;
+  //   verAutos(busquedaArray);
+  // } else {
+  //   igualIgual.innerHTML = "";
+  //   verAutos(busquedaArray);
+  // }
+
+//REEMPLAZANDO EL CODIGO DE ARRIBA POR UN OPERADOR TERNARIO (LA MISMA FUNCION PERO DISTINTO CODIGO)
+
+busquedaArray.length == 0 ? (igualIgual.innerHTML = `<h2>No se encuetra el vehiculo solicitado</h2>` , verAutos(busquedaArray)) : (igualIgual.innerHTML = "" , verAutos(busquedaArray))
 }
 
 function ordenarMenorMayor(array) {
@@ -204,13 +238,36 @@ selector.addEventListener("change", () => {
   }
 });
 
+
+botonReservas.addEventListener("click", ()=>{
+  cargarReservas(autosReservados)
+})
 //clase 6
 
-localStorage.setItem("primerLote", JSON.stringify(Lote1));
-localStorage.setItem("Lotes", JSON.stringify(estanteria));
+// localStorage.setItem("primerLote", JSON.stringify(Lote1));
+// localStorage.setItem("Lotes", JSON.stringify(estanteria));
 
-console.log(localStorage.getItem("primerLote"));
-console.log(localStorage.getItem("Lotes"));
+// console.log(localStorage.getItem("primerLote"));
+// console.log(localStorage.getItem("Lotes"));
 
-console.log(JSON.parse(localStorage.getItem("primerLote")));
-console.log(JSON.parse(localStorage.getItem("Lotes")));
+// console.log(JSON.parse(localStorage.getItem("primerLote")));
+// console.log(JSON.parse(localStorage.getItem("Lotes")));
+
+
+// CLASE 7 DESESTRUCTURACION (MODIFICA EL OBJETO SIN ALTERAR EL ORIGINAL)
+
+// let{precio} = Lote5
+// console.log(precio)
+// Lote5.precio = 13
+// console.log(Lote5)
+
+//SPREAD CON OBJETOS
+
+// let superLote2 = {
+//   ...Lote2,
+//   Traccion: "Integral",
+//   Combustible: "Etanol",
+//   Alimentacion: "Biturbo"
+// }
+
+// console.log(superLote2)

@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Servicios FJR</title>
+    <link rel="shortcut icon" href="../imagenes/favicon-32x32.png" type="image/x-icon"> <!--icono de la pagina-->
+
     <!--CSS BOTSTRAP-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -18,201 +20,242 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.1/font/bootstrap-icons.css"
     />
     <!--MI ARCHIVO CSS-->
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="../scss/style.css" />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo03"
-          aria-controls="navbarTogglerDemo03"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="../index.html">Inicio</a>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <!--<li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                href="../index.html"
-                >Inicio</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Ir a</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Hacer</a>
-            </li>-->
-            <li>
-              <button
-                id="mostrarAutos"
-                type="button"
-                class="btn btn-primary btn-sm"
-              >
-                Mostrar autos
-              </button>
-              <button
-                id="ocultarAutos"
-                type="button"
-                class="btn btn-primary btn-sm"
-              >
-                Ocultar autos
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              >
-                Almacenar auto
-              </button>
-
-              <li>
-              <select id="selector" class="form-select" aria-expanded="false">
-                <option selected>Ordenar por: </option>
-                <option value="1">$ Menor a Mayor</option>
-                <option value="2">$ Mayor a Menor</option>
-                <option value="3">Ordenar A - Z</option>
-              </select>
-            </li>
-            </li>
-            
-          </ul>
-          <form class="d-flex">
-            <input
-              id="buscador"
-              class="form-control me-2"
-              placeholder="Buscar vehiculo"
-              aria-label="Search"
-            />
+  
+<section class="cuerpo">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="../index.html">Inicio</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li>
+            <button
+              id="mostrarAutos"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              Mostrar autos
+            </button>
+            <button
+              id="ocultarAutos"
+              type="button"
+              class="btn btn-primary btn-sm"
+            >
+              Ocultar autos
+            </button>
             <button
               type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
+              data-bs-target="#exampleModal"
             >
-              Mis reservas
+              Almacenar auto
             </button>
-          </form>
-        </div>
-      </div>
-    </nav>
 
-    <div class="container">
-      <div id="igualIgual"></div>
-      <div id="garaje" class="row"></div>
-    </div>
-
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">
-              Cargar datos del vehiculo
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="formGroupExampleInput" class="form-label"
-                >Ingresar Marca y año</label
-              >
-              <input type="text" class="form-control" id="marcaInput" />
-            </div>
-            <div class="mb-3">
-              <label for="formGroupExampleInput2" class="form-label"
-                >Ingresar modelo</label
-              >
-              <input type="text" class="form-control" id="modeloInput" />
-            </div>
-            <div class="mb-3">
-              <label for="formGroupExampleInput2" class="form-label"
-                >Ingresar precio</label
-              >
-              <input type="text" class="form-control" id="precioInput" />
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cerrar
-            </button>
-            <button type="button" class="btn btn-primary" id="guardarCarBtn">
-              Guardar
-            </button>
-          </div>
-        </div>
+            <li>
+            <select id="selector" class="form-select" aria-expanded="false">
+              <option selected>Ordenar por: </option>
+              <option value="1">$ Menor a Mayor</option>
+              <option value="2">$ Mayor a Menor</option>
+              <option value="3">Ordenar A - Z</option>
+            </select>
+          </li>
+          </li>
+          
+        </ul>
+        <form class="d-flex">
+          <input
+            id="buscador"
+            class="form-control me-2"
+            placeholder="Buscar vehiculo"
+            aria-label="Search"
+          />
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="botonReservas"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
+          >
+            Mis reservas
+          </button>
+        </form>
       </div>
     </div>
+  </nav>
+  
+<!-- DIV'S DE LOS AUTOS -->
+  <div class="container">
+    <div id="igualIgual"></div>
+    <div id="garaje" class="row"></div>
+  </div>
 
-    <!-- Modal mis reservas-->
-    <div
-      class="modal fade"
-      id="staticBackdrop"
-      data-bs-backdrop="static"
-      data-bs-keyboard="false"
-      tabindex="-1"
-      aria-labelledby="staticBackdropLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">
-              ¡Atencion! estas por reservar los siguientes vehiculos
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+    <!--GALERIA-->
+
+    <div>
+
+
+      <div class="container00">
+        <h2 class="titul0">Nuestros vehiculos</h2>
+        <p class="text0">Contamos con vehiculos usados y 0km</p>
+      </div>
+      
+      <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../imagenes/Alquiler/bmwx6.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>BMW X6</h5>
+              <p>CUENTA CON TODOS LOS SERVICES OFICIAL DE BMW</p>
+            </div>
           </div>
-          <div class="modal-body">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse sed
-              dolorem illo obcaecati non nulla ullam fugit earum, facere laborum
-              totam, molestias, eum necessitatibus optio aut. Molestias saepe
-              alias amet!
-            </p>
+          <div class="carousel-item">
+            <img src="../imagenes/Alquiler/Auditt.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>AUDI TT</h5>
+              <p>CON TAN SOLO 50 KM</p>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+          <div class="carousel-item">
+            <img src="../imagenes/Alquiler/AUDIrs6.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>AUDI RS6</h5>
+              <p>NUESTRO NUEVO EJEMPLAR 0KM</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+    </div>
+
+ <!-- MODALES -->
+
+
+  <!-- MODAL DE CARGAR VEHICULOS -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Cargar datos del vehiculo
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="formGroupExampleInput" class="form-label"
+              >Ingresar Marca y año</label
             >
-              Cerrar
-            </button>
-            <button type="button" class="btn btn-primary">Reservar</button>
+            <input type="text" class="form-control" id="marcaInput" />
           </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"
+              >Ingresar modelo</label
+            >
+            <input type="text" class="form-control" id="modeloInput" />
+          </div>
+          <div class="mb-3">
+            <label for="formGroupExampleInput2" class="form-label"
+              >Ingresar precio</label
+            >
+            <input type="text" class="form-control" id="precioInput" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
+          <button type="button" class="btn btn-primary" id="guardarCarBtn">
+            Guardar
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
+  <!-- MODAL DE MIS RESERVAS-->
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+            ¡Atencion! estas por reservar los siguientes vehiculos
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" id="modalReservas">
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse sed
+            dolorem illo obcaecati non nulla ullam fugit earum, facere laborum
+            totam, molestias, eum necessitatibus optio aut. Molestias saepe
+            alias amet!
+          </p>
+        </div>
+        <div class="modal-footer">
+          <p id="precioTotal">...</p>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Reservar</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
     <!--JS BOTSTRAP-->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

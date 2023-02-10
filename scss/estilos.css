@@ -43,7 +43,7 @@ html {
   font-size: 62.7%;
 }
 html body {
-  background-color: rgb(92, 3, 3);
+  background-color: rgb(110, 1, 1);
   color: whitesmoke;
   font-family: "Sofia Sans", sans-serif;
 }
@@ -140,6 +140,4 @@ html body {
 
 .bi {
   font-size: 4.5rem;
-}
-
-/*# sourceMappingURL=estilos.css.map */
+}/*# sourceMappingURL=estilos.css.map */

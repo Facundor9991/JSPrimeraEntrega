@@ -63,7 +63,7 @@ function verAutos(array) {
     tingladoSurDiv.className = "col-12 col-md-6 col-lg-4 my-2";
     tingladoSurDiv.innerHTML = `
     <div id="${Lote.id}" class="card" style="width: 18rem;">
-              <img class="card-img-top img-fluid" style="height: 200px;"src="/imagenes/Alquiler/${Lote.imagen}" alt="">
+              <img class="card-img-top img-fluid" style="height: 200px;"src="../imagenes/Alquiler/${Lote.imagen}" alt="">
               <div class="card-body">
                   <h4 class="card-title">${Lote.marca}</h4>
                   <p>Modelo: ${Lote.modelo}</p>
@@ -94,13 +94,20 @@ let autosReservados = JSON.parse(localStorage.getItem("carsreser")) || []
 //console.log (autosReservados)
 
 
-function reservaTotal(array){
-  let acumulador = 0
-  for(let car of array){
-    acumulador = acumulador + car.precio
-  }
-  precioTotal.innerHTML = `El total es <strong>${acumulador}</strong> USD`
+ function reservaTotal(array){
+//   let acumulador = 0
+//   for(let car of array){
+//     acumulador = acumulador + car.precio
+//   }
+//ACUMULADOR CON REDUCE
+let total = array.reduce((acc, productcarrito)=> acc + productcarrito.precio ,0)
+console.log("acc con reduce" + total)
+//ternario
+total == 0 ?
+precioTotal.innerHTML = `No hay reservas` : precioTotal.innerHTML = `El total es <strong>${total}</strong> USD`
+return total
 }
+
 
 function agregarReservas(Lote){
   //console.log(Lote)
@@ -111,8 +118,27 @@ function agregarReservas(Lote){
     autosReservados.push(Lote)
     localStorage.setItem("carsreser", JSON.stringify(autosReservados))
 console.log(autosReservados)
+
+Swal.fire({
+  title:"El vehiculo se agrego correctamente",
+icon: "success",
+confirmButtonColor: "#2c0303",
+imageUrl: `../imagenes/Alquiler/${Lote.imagen}`,
+imagenHeight: 100,
+imagenWidth: 50
+
+})
+
   }else{
-    alert("ya tienes agregado el vehiculo")
+
+    Swal.fire({
+      title:'Ya tienes agregado este elemento',
+      icon: "info",
+      timer: 2000,
+      confirmButtonColor: "#2c0303"
+    
+    })
+    
   }
 }
 
@@ -125,7 +151,8 @@ array.forEach((careservado)=> {
   modalReservas.innerHTML +=
   `
   <div class="card" style="width: 18rem;">
-  <div class="card-body">
+  <div class="card-body" id = "cardReserva${careservado.id}">
+  <img src="../imagenes/Alquiler/${careservado.imagen}" class="card-img-top" alt="...">
   <h4 class="card-title">${careservado.marca}</h4>
     <p class="card-text">${careservado.modelo}</p>
     <p class="card-text">Valor: ${careservado.precio}</p>
@@ -134,26 +161,47 @@ array.forEach((careservado)=> {
 </div>
   `
 })
+//segundo for each agregar funcion eliminar 
+array.forEach((careservado)=>{
+  document.getElementById(`botonEliminar${careservado.id}`).addEventListener("click", ()=>{
+    console.log("btn eliminar funciona")
+
+//BORRAR DEL DOM
+let cardReserva =document.getElementById(`cardReserva${careservado.id}`)
+cardReserva.remove()
+
+//ELIMINAR DEL ARRAY
+//buscar prod a eliminar
+let eliminarReserva = array.find(Lote => Lote.id == careservado.id)
+console.log(eliminarReserva)
+let posicion = array.indexOf (eliminarReserva)
+console.log(posicion)
+//SPLICE
+array.splice(posicion, 1)
+console.log(array)
+//SETEAR EL STORAGE
+localStorage.setItem("carsreser", JSON.stringify(array))
+//RECALCULAR EL PRECIO
+reservaTotal(array)
+  })
+})
 reservaTotal(array)
 }
 
 function agregarCars(array) {
 
   //agregarlo con funcion constructora
-  const nuevoLote = new Lote(
-    array.length + 1,
-    inputMarca.value,
-    inputModelo.value,
-    parseInt(inputPrecio.value),
-    ""
-  );
+  const nuevoLote = new Lote(array.length + 1, inputMarca.value, inputModelo.value, parseInt(inputPrecio.value), "ferrari.jpg")
   console.log(nuevoLote);
   //pushearlo o sumarlo al array
-  array.push(nuevoLote);
-  //mostrarCatalogo(array)
-  console.log(array);
+  array.push(nuevoLote)
   //guardar en storage
-  localStorage.setItem("estanteria", JSON.stringify(array));
+  localStorage.setItem("estanteria", JSON.stringify(array))
+  verAutos (array)
+
+  //mostrarCatalogo(array)
+  console.log(array)
+  
 
   inputMarca.value = "";
   inputModelo.value = "";
@@ -263,11 +311,18 @@ botonReservas.addEventListener("click", ()=>{
 
 //SPREAD CON OBJETOS
 
-// let superLote2 = {
-//   ...Lote2,
-//   Traccion: "Integral",
-//   Combustible: "Etanol",
-//   Alimentacion: "Biturbo"
-// }
+ let superLote2 = {
+   ...Lote2,
+   Traccion: "Integral",
+   Combustible: "Etanol",
+   Alimentacion: "Biturbo"
+ }
 
-// console.log(superLote2)
+ console.log(superLote2)
+
+ //PRIMERA LIBRERIA
+
+//LUXON
+const DateTime = luxon.DateTime
+const fechaHoy = DateTime.now()
+console.log(fechaHoy)

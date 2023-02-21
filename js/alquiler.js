@@ -1,41 +1,135 @@
 //DATOS ESTABLECIDOS
 class Lote {
-  constructor(id, marca, modelo, precio, imagen) {
+  constructor(
+    id,
+    marca,
+    modelo,
+    cilindrada,
+    sobrealimentacion,
+    precio,
+    imagen
+  ) {
     (this.id = id),
       (this.marca = marca),
       (this.modelo = modelo),
+      (this.cilindrada = cilindrada),
+      (this.sobrealimentacion = sobrealimentacion),
       (this.precio = precio),
       (this.imagen = imagen);
   }
-  mostrarInfoLote() {
-    //console.log(`el id del libro es ${this.id}El libro fue escrito por ${this.autor} su titulo es ${this.titulo} y su precio es de ${this.precio}}`)
-  }
+  mostrarInfoLote() {}
 }
 
-const Lote1 = new Lote(1, "Audi 2010", "TT", 150, "Auditt.jpg");
-const Lote2 = new Lote(2, "Audi 2010", "RS6", 280, "rs62010.jpg");
-const Lote3 = new Lote(3, "BMW 2018", "X6", 210, "bmwx6.jpg");
-const Lote4 = new Lote(4, "MAZDA 2014", "RX-8", 170, "Mazdarx8.jpg");
-const Lote5 = new Lote(5, "TOYOTA 2008", "SUPRA", 160, "toyoyasupra.jpg");
-const Lote6 = new Lote(6, "FERRARI 2022", "458 SPYDER", 300, "ferrari.jpg");
+const Lote1 = new Lote(1, "AUDI 2010", "TT", 2.2, "TURBO", 150, "Auditt.jpg");
+const Lote2 = new Lote(
+  2,
+  "AUDI 2010",
+  "RS6",
+  4.2,
+  "COMPRESORA",
+  280,
+  "rs62010.jpg"
+);
+const Lote3 = new Lote(
+  3,
+  "BMW 2018",
+  "X6",
+  4.4,
+  "COMPRESORA",
+  210,
+  "bmwx6.jpg"
+);
+const Lote4 = new Lote(
+  4,
+  "MAZDA 2014",
+  "RX-8",
+  2.6,
+  "TURBO",
+  377,
+  "Mazdarx8.jpg"
+);
+const Lote5 = new Lote(
+  5,
+  "TOYOTA 2008",
+  "SUPRA",
+  3.1,
+  "TURBO",
+  363,
+  "toyoyasupra.jpg"
+);
+const Lote6 = new Lote(
+  6,
+  "FERRARI 2022",
+  "458 SPYDER",
+  4.5,
+  "TURBO",
+  300,
+  "ferrari.jpg"
+);
+const Lote7 = new Lote(
+  7,
+  "FORD 2022",
+  "RAPTOR",
+  3.5,
+  "TURBO",
+  325,
+  "raptor.jpg"
+);
+const Lote8 = new Lote(8, "KAWASAKI 2013", "KLX", 0.450, "S/N", 100, "klx.jpg");
+const Lote9 = new Lote(
+  9,
+  "DODGE 2018",
+  "RAM LARAMIE",
+  5.8,
+  "COMPRESORA",
+  429,
+  "RAM.jpg"
+);
+const Lote10 = new Lote(
+  10,
+  "DODGE 2020",
+  "CHALLENGER SRT",
+  5.7,
+  "COMPRESORA",
+  567,
+  "DODGESRT.jpg"
+);
+const Lote11 = new Lote(
+  11,
+  "YAMAHA 2018",
+  "GYTR RAPTOR",
+  0.700,
+  "S/N",
+  213,
+  "RAPTOR_4.jpg"
+);
+
 
 Lote1.mostrarInfoLote();
 
-let estanteria = [];
+let tinglado1 = [];
 
-// 2 posibilidades de que exista o q no algo en el storage
-if (localStorage.getItem("estanteria")) {
-  //si exite algo entra
-  estanteria = JSON.parse(localStorage.getItem("estanteria"));
+//-------2 POSIBILIDADES DE QUE EXISTA ALGO O NO EN EL STORAGE-- POSSIBILITIES OF SOMETHING EXISTING OR NOT IN THE STORAGE-------//
+if (localStorage.getItem("tinglado1")) {
+  tinglado1 = JSON.parse(localStorage.getItem("tinglado1"));
 } else {
-  //si no existe, entra al else
-  console.log("seteamos por primera vez");
-  estanteria.push(Lote1, Lote2, Lote3, Lote4, Lote5, Lote6);
-  //localStorage.setItem("estanteria", JSON.stringify(estanteria));
+  //console.log("seteamos por primera vez");
+  tinglado1.push(
+    Lote1,
+    Lote2,
+    Lote3,
+    Lote4,
+    Lote5,
+    Lote6,
+    Lote7,
+    Lote8,
+    Lote9,
+    Lote10,
+    Lote11
+  );
 }
-//console.log(estanteria);
 
-//---------CAPTURANDO LET'S----------//
+//---------CAPTURANDO LET'S---CAPTURING LET'S----------//
 
 let garajeDiv = document.getElementById("garaje");
 let mostrarAutosBtn = document.getElementById("mostrarAutos");
@@ -43,15 +137,14 @@ let ocultarAutosBtn = document.getElementById("ocultarAutos");
 let inputMarca = document.getElementById("marcaInput");
 let inputModelo = document.getElementById("modeloInput");
 let inputPrecio = document.getElementById("precioInput");
-let guardarCarBtn = document.getElementById("guardarCarBtn");
+
 let inputBuscador = document.querySelector("#buscador");
 let igualIgual = document.getElementById("igualIgual");
 let selector = document.getElementById("selector");
 let modalReservas = document.getElementById("modalReservas");
 let botonReservas = document.getElementById("botonReservas");
 let precioTotal = document.getElementById("precioTotal");
-
-let btnFinReservar = document.getElementById("btnFinReservar")
+let btnFinReservar = document.getElementById("btnFinReservar");
 
 // let autosReservados
 // if(localStorage.getItem("carsreser")){
@@ -60,11 +153,10 @@ let btnFinReservar = document.getElementById("btnFinReservar")
 //   autosReservados = []
 //   localStorage.setItem("carsreser", autosReservados)
 // }
-
 //REEEMPLAZANDO EL CODIGO DE ARRIBA CON OPERADOR OR
 let autosReservados = JSON.parse(localStorage.getItem("carsreser")) || [];
 
-//------FUNCIONES-------//
+//----------------FUNCIONES------------FUNCTIONS-----//
 
 function verAutos(array) {
   garajeDiv.innerHTML = "";
@@ -77,6 +169,8 @@ function verAutos(array) {
               <div class="card-body">
                   <h4 class="card-title">${Lote.marca}</h4>
                   <p>Modelo: ${Lote.modelo}</p>
+                  <p>Cm3: ${Lote.cilindrada}</p>
+                  <p>Sobrealimentacion: ${Lote.sobrealimentacion}</p>
                   <p class="">Precio en:<strong> ${Lote.precio}</strong>USD por 24HS</p>
                   <button id="agregarBtn${Lote.id}" class="btn btn-outline-success">Reservar</button>
               </div>
@@ -91,17 +185,13 @@ function verAutos(array) {
 }
 
 function reservaTotal(array) {
-  //   let acumulador = 0
-  //   for(let car of array){
-  //     acumulador = acumulador + car.precio
-  //   }
-  //ACUMULADOR CON REDUCE
+  //--------------ACUMULADOR CON REDUCE--------------ACCUMULATOR WITH REDUCER-----//
   let total = array.reduce(
-    (acc, productcarrito) => acc + productcarrito.precio,
+    (acc, productreserv) => acc + productreserv.precio,
     0
   );
   console.log("acc con reduce" + total);
-  //ternario
+  //---------------OP TERNARIO------OP TERNARY--------------------//
   total == 0
     ? (precioTotal.innerHTML = `No hay reservas`)
     : (precioTotal.innerHTML = `El total es <strong>${total}</strong> USD`);
@@ -143,7 +233,8 @@ function cargarReservas(array) {
   <div class="card-body" id = "cardReserva${careservado.id}">
   <img src="../imagenes/Alquiler/${careservado.imagen}" class="card-img-top" alt="...">
   <h4 class="card-title">${careservado.marca}</h4>
-    <p class="card-text">${careservado.modelo}</p>
+    <p class="card-text">Modelo: ${careservado.modelo}</p>
+    <p class="card-text">Caracteristica: ${careservado.sobrealimentacion}</p>
     <p class="card-text">Valor: ${careservado.precio}</p>
     <button class= "btn btn-danger" id="botonEliminar${careservado.id}">Eliminar<i class="fas fa-trash-alt"></i></button>
   </div>
@@ -151,21 +242,21 @@ function cargarReservas(array) {
   `;
   });
 
-  //segundo for each agregar funcion eliminar
+  //------------------------SEGUNDO FOR EACH (AGREGAR FUNCION ELIMINAR)----SECOND FOR EACH (ADD DELETE FUNCTION)---------------//
   array.forEach((careservado) => {
     document
       .getElementById(`botonEliminar${careservado.id}`)
       .addEventListener("click", () => {
         console.log("btn eliminar funciona");
 
-        //BORRAR DEL DOM
+        //-------BORRAR DEL DOM----DELETE FROM SUN---------//
         let cardReserva = document.getElementById(
           `cardReserva${careservado.id}`
         );
         cardReserva.remove();
 
-        //ELIMINAR DEL ARRAY
-        //buscar prod a eliminar
+        //----------------ELIMINAR DEL ARRAY------DELETE FROM ARRAY------------------//
+        //-----------BUSCAR ID A ELIMINAR--------SEARCH PROD TO DELETE-------------------//
         let eliminarReserva = array.find((Lote) => Lote.id == careservado.id);
         console.log(eliminarReserva);
         let posicion = array.indexOf(eliminarReserva);
@@ -173,38 +264,17 @@ function cargarReservas(array) {
         //SPLICE
         array.splice(posicion, 1);
         console.log(array);
-        //SETEAR EL STORAGE
+        //---------SETEAR EL STORAGE-------SET THE STORAGE----------//
         localStorage.setItem("carsreser", JSON.stringify(array));
-        //RECALCULAR EL PRECIO
+        //----------RECALCULAR EL PRECIO---------RECALCULATE THE PRICE---------------------//
         reservaTotal(array);
       });
   });
   reservaTotal(array);
 }
 
-function agregarCars(array) {
-  //agregarlo con funcion constructora
-  const nuevoLote = new Lote(
-    array.length + 1,
-    inputMarca.value,
-    inputModelo.value,
-    parseInt(inputPrecio.value),
-    "ferrari.jpg"
-  );
-  console.log(nuevoLote);
-  //pushearlo o sumarlo al array
-  array.push(nuevoLote);
-  //guardar en storage
-  localStorage.setItem("estanteria", JSON.stringify(array));
-  verAutos(array);
 
-  //mostrarCatalogo(array)
-  console.log(array);
-
-  inputMarca.value = "";
-  inputModelo.value = "";
-  inputPrecio.value = "";
-}
+//------------------------------ATENCION--------//
 
 function buscarInfo(buscado, array) {
   //CONDICION COMPUESTA COINCIDENCIA TOTAL: (Lote.marca.toLowerCase() == buscado.toLowerCase() || Lote.modelo.toLowerCase() == buscado.toLowerCase() )
@@ -238,7 +308,7 @@ function ordenarMenorMayor(array) {
 
 function ordenarMayorMenor(array) {
   const mayorMenor = [].concat(array);
-  mayorMenor.sort((a, b) => b.precio - a.precio);
+  mayorMenor.sort((a, b) => b.cilindrada - a.cilindrada);
   verAutos(mayorMenor);
 }
 
@@ -256,56 +326,54 @@ function ordenarAlfaMar(array) {
   verAutos(ordenadoAlfa);
 }
 
-function finalizarReserva(array){
+function finalizarReserva(array) {
   Swal.fire({
-    title: '¿Desea finalizar reserva?',
-    icon: 'info',
+    title: "¿Desea finalizar reserva?",
+    icon: "info",
     showCancelButton: true,
-    confirmButtonText: 'Si',
-    cancelButtonText: 'No',
-    confirmButtonColor: 'green',
-    cancelButtonColor: 'red',
-  }).then((result)=> {
-    if(result.isConfirmed){
-
-      let finReserva = reservaTotal(array)
+    confirmButtonText: "Si",
+    cancelButtonText: "No",
+    confirmButtonColor: "green",
+    cancelButtonColor: "red",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let finReserva = reservaTotal(array);
       Swal.fire({
-        title:'Reserva confirmada',
-        icon: 'success',
-        confirmButtonColor:'green',
-        text: `Su total es de:${finReserva} USD por 24 hs, gracias por elejir FJR`,
-      })
-//resetar el array para que una vez finalizada se ponga en 0 las reservas
-autosReservados = []
-localStorage.removeItem("carsreser")
-
-    }else{
+        title: "Reserva confirmada",
+        icon: "success",
+        confirmButtonColor: "green",
+        text: `Su total es de: ${finReserva} USD por 24 hs, gracias por elejir FJR`,
+      });
+      //------RESETEAR EL ARRAY PARA VOLVER LAS RESERVAS A 0--------RESET THE ARRAY TO RETURN THE RESERVES TO 0-------//
+      //---------nO fUnCiOnA
+      autosReservados = [];
+      localStorage.removeItem("carsreser");
+    } else {
       Swal.fire({
-        title: 'Upss',
-        icon: 'info',
-        text: 'La reserva ha sido cancelada',
-        confirmButtonColor:'green',
-        timer: 2500
-      })
+        title: "Upss",
+        icon: "info",
+        text: "La reserva ha sido cancelada",
+        confirmButtonColor: "green",
+        timer: 2500,
+      });
     }
-  })
+  });
 }
 
-
-//ADJUNTANDO EVENTOS
+//----------------ADJUNTANDO EVENTOS--------------ATTACHING EVENTS--------------//
 
 inputBuscador.addEventListener("input", () => {
   console.log(inputBuscador.value);
-  buscarInfo(inputBuscador.value, estanteria);
+  buscarInfo(inputBuscador.value, tinglado1);
 });
 
 mostrarAutosBtn.onclick = function () {
-  verAutos(estanteria);
+  verAutos(tinglado1);
 };
 
-guardarCarBtn.addEventListener("click", () => {
-  agregarCars(estanteria);
-});
+
+
+
 
 ocultarAutosBtn.addEventListener("dblclick", () => {
   garajeDiv.innerHTML = "";
@@ -313,13 +381,13 @@ ocultarAutosBtn.addEventListener("dblclick", () => {
 
 selector.addEventListener("change", () => {
   if (selector.value == 1) {
-    ordenarMenorMayor(estanteria);
+    ordenarMenorMayor(tinglado1);
   } else if (selector.value == 2) {
-    ordenarMayorMenor(estanteria);
+    ordenarMayorMenor(tinglado1);
   } else if (selector.value == 3) {
-    ordenarAlfaMar(estanteria);
+    ordenarAlfaMar(tinglado1);
   } else {
-    verAutos(estanteria);
+    verAutos(tinglado1);
   }
 });
 
@@ -327,27 +395,9 @@ botonReservas.addEventListener("click", () => {
   cargarReservas(autosReservados);
 });
 
-
-btnFinReservar.addEventListener("click",()=>{
-  finalizarReserva(autosReservados)
-} )
-//clase 6
-
-// localStorage.setItem("primerLote", JSON.stringify(Lote1));
-// localStorage.setItem("Lotes", JSON.stringify(estanteria));
-
-// console.log(localStorage.getItem("primerLote"));
-// console.log(localStorage.getItem("Lotes"));
-
-// console.log(JSON.parse(localStorage.getItem("primerLote")));
-// console.log(JSON.parse(localStorage.getItem("Lotes")));
-
-// CLASE 7 DESESTRUCTURACION (MODIFICA EL OBJETO SIN ALTERAR EL ORIGINAL)
-
-// let{precio} = Lote5
-// console.log(precio)
-// Lote5.precio = 13
-// console.log(Lote5)
+btnFinReservar.addEventListener("click", () => {
+  finalizarReserva(autosReservados);
+});
 
 //SPREAD CON OBJETOS
 

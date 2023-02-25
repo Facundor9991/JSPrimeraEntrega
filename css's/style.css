@@ -31,3 +31,55 @@ p{
     color: whitesmoke;
     font-size: 23px;
 }
+
+.container01{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../imagenes/android-chrome-512x512.png);
+    background-color: rgb(110, 1, 1);
+    background-position: center center;
+    background-repeat: no-repeat;
+    gap: 60px;
+}
+input{
+    outline: 0;
+    background-color: whitesmoke;
+    width: 100%;
+    border:0 ;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+
+}
+.boton{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background-color: whitesmoke;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: rgb(144, 142, 139);
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.form-grup{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1 ;
+    background-color: rgb(158, 158, 158);
+    max-width: 360px;
+    padding: 45px;
+    text-align: center;
+
+}

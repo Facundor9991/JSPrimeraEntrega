@@ -1,0 +1,101 @@
+[
+{
+    "id": 1,
+    "marca": "AUDI 2010",
+    "modelo": "TT",
+    "cilindrada": 2.2,
+    "sobrealimentacion": "TURBO",
+    "precio": 150,
+    "imagen": "Auditt.jpg"
+},
+{
+    "id": 2,
+    "marca": "AUDI 2010",
+    "modelo": "RS6",
+    "cilindrada": 4.2,
+    "sobrealimentacion": "COMPRESORA",
+    "precio": 280,
+    "imagen": "rs62010.jpg"
+},
+{
+    "id": 3,
+    "marca": "BMW 2018",
+    "modelo": "X6",
+    "cilindrada": 4.4,
+    "sobrealimentacion": "COMPRESORA",
+    "precio": 210,
+    "imagen": "bmwx6.jpg"
+},
+{
+    "id": 4,
+    "marca": "MAZDA 2014",
+    "modelo": "RX-8",
+    "cilindrada": 2.6,
+    "sobrealimentacion": "TURBO",
+    "precio": 377,
+    "imagen": "Mazdarx8.jpg"
+},
+{
+    "id": 5,
+    "marca": "TOYOTA 2008",
+    "modelo": "SUPRA",
+    "cilindrada": 3.1,
+    "sobrealimentacion": "TURBO",
+    "precio": 363,
+    "imagen": "toyoyasupra.jpg"
+},
+{
+    "id": 6,
+    "marca": "FERRARI 2022",
+    "modelo": "458 SPYDER",
+    "cilindrada": 4.5,
+    "sobrealimentacion": "TURBO",
+    "precio": 300,
+    "imagen": "ferrari.jpg"
+},
+{
+    "id": 7,
+    "marca": "FORD 2022",
+    "modelo": "RAPTOR",
+    "cilindrada": 3.5,
+    "sobrealimentacion": "TURBO",
+    "precio": 325,
+    "imagen": "raptor.jpg"
+},
+{
+    "id": 8,
+    "marca": "KAWASAKI 2013",
+    "modelo": "KLX",
+    "cilindrada": 0.450,
+    "sobrealimentacion": "S/N",
+    "precio": 100,
+    "imagen": "klx.jpg"
+},
+{
+    "id": 9,
+    "marca": "DODGE 2018",
+    "modelo": "RAM LARAMIE",
+    "cilindrada": 5.8,
+    "sobrealimentacion": "COMPRESORA",
+    "precio": 429,
+    "imagen": "RAM.jpg"
+},
+{
+    "id": 10,
+    "marca": "DODGE 2020",
+    "modelo": "CHALLERGER SRT",
+    "cilindrada": 5.7,
+    "sobrealimentacion": "COMPRESORA",
+    "precio": 567,
+    "imagen": "DODGESRT.jpg"
+},
+{
+    "id": 11,
+    "marca": "YAMAHA 2018",
+    "modelo": "GYTR RAPTOR",
+    "cilindrada": 0.700,
+    "sobrealimentacion": "S/N",
+    "precio": 213,
+    "imagen": "RAPTOR_4.jpg"
+}
+]

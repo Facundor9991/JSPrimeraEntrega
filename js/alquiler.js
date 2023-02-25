@@ -20,113 +20,38 @@ class Lote {
   mostrarInfoLote() {}
 }
 
-const Lote1 = new Lote(1, "AUDI 2010", "TT", 2.2, "TURBO", 150, "Auditt.jpg");
-const Lote2 = new Lote(
-  2,
-  "AUDI 2010",
-  "RS6",
-  4.2,
-  "COMPRESORA",
-  280,
-  "rs62010.jpg"
-);
-const Lote3 = new Lote(
-  3,
-  "BMW 2018",
-  "X6",
-  4.4,
-  "COMPRESORA",
-  210,
-  "bmwx6.jpg"
-);
-const Lote4 = new Lote(
-  4,
-  "MAZDA 2014",
-  "RX-8",
-  2.6,
-  "TURBO",
-  377,
-  "Mazdarx8.jpg"
-);
-const Lote5 = new Lote(
-  5,
-  "TOYOTA 2008",
-  "SUPRA",
-  3.1,
-  "TURBO",
-  363,
-  "toyoyasupra.jpg"
-);
-const Lote6 = new Lote(
-  6,
-  "FERRARI 2022",
-  "458 SPYDER",
-  4.5,
-  "TURBO",
-  300,
-  "ferrari.jpg"
-);
-const Lote7 = new Lote(
-  7,
-  "FORD 2022",
-  "RAPTOR",
-  3.5,
-  "TURBO",
-  325,
-  "raptor.jpg"
-);
-const Lote8 = new Lote(8, "KAWASAKI 2013", "KLX", 0.450, "S/N", 100, "klx.jpg");
-const Lote9 = new Lote(
-  9,
-  "DODGE 2018",
-  "RAM LARAMIE",
-  5.8,
-  "COMPRESORA",
-  429,
-  "RAM.jpg"
-);
-const Lote10 = new Lote(
-  10,
-  "DODGE 2020",
-  "CHALLENGER SRT",
-  5.7,
-  "COMPRESORA",
-  567,
-  "DODGESRT.jpg"
-);
-const Lote11 = new Lote(
-  11,
-  "YAMAHA 2018",
-  "GYTR RAPTOR",
-  0.700,
-  "S/N",
-  213,
-  "RAPTOR_4.jpg"
-);
 
 
-Lote1.mostrarInfoLote();
+
+
 
 let tinglado1 = [];
+
+
+//INSTALANDO ARCHIVO JSON
+
+
+const cargarTinglado1 = async ()=> {
+  //----RUTA RELATIVA OJO, TODO DEPENDE DE DONDE ESTA EL ARCHIVO HTML RAIZ---- RELATIVE PATH EYE, EVERYTHING DEPENDS ON WHERE IS THE ROOT HTML FILE
+  const response = await fetch ("../vehiculos.json")
+  const data = await response.json()
+  for (let lote of data){
+    let loteNuevo = new Lote(lote.id, lote.marca, lote.modelo, lote.cilindrada, lote.sobrealimentacion, lote.precio, lote.imagen)
+    tinglado1.push(loteNuevo)
+  }
+  console.log(tinglado1)
+  localStorage.setItem("tinglado1", JSON.stringify(tinglado1))
+}
+
+
+
 
 //-------2 POSIBILIDADES DE QUE EXISTA ALGO O NO EN EL STORAGE-- POSSIBILITIES OF SOMETHING EXISTING OR NOT IN THE STORAGE-------//
 if (localStorage.getItem("tinglado1")) {
   tinglado1 = JSON.parse(localStorage.getItem("tinglado1"));
 } else {
   //console.log("seteamos por primera vez");
-  tinglado1.push(
-    Lote1,
-    Lote2,
-    Lote3,
-    Lote4,
-    Lote5,
-    Lote6,
-    Lote7,
-    Lote8,
-    Lote9,
-    Lote10,
-    Lote11
-  );
+  cargarTinglado1()
 }
 
 //---------CAPTURANDO LET'S---CAPTURING LET'S----------//
@@ -145,6 +70,8 @@ let modalReservas = document.getElementById("modalReservas");
 let botonReservas = document.getElementById("botonReservas");
 let precioTotal = document.getElementById("precioTotal");
 let btnFinReservar = document.getElementById("btnFinReservar");
+let cargado = document.getElementById("cargado")
+let cargador = document.getElementById("cargador")
 
 // let autosReservados
 // if(localStorage.getItem("carsreser")){
@@ -157,6 +84,7 @@ let btnFinReservar = document.getElementById("btnFinReservar");
 let autosReservados = JSON.parse(localStorage.getItem("carsreser")) || [];
 
 //----------------FUNCIONES------------FUNCTIONS-----//
+
 
 function verAutos(array) {
   garajeDiv.innerHTML = "";
@@ -401,14 +329,14 @@ btnFinReservar.addEventListener("click", () => {
 
 //SPREAD CON OBJETOS
 
-let superLote2 = {
-  ...Lote2,
-  Traccion: "Integral",
-  Combustible: "Etanol",
-  Alimentacion: "Biturbo",
-};
+//let superLote2 = {
+ // ...Lote2,
+  //Traccion: "Integral",
+  //Combustible: "Etanol",
+  //Alimentacion: "Biturbo",
+//};
 
-console.log(superLote2);
+//console.log(superLote2);
 
 //PRIMERA LIBRERIA
 
@@ -416,3 +344,6 @@ console.log(superLote2);
 const DateTime = luxon.DateTime;
 const fechaHoy = DateTime.now();
 console.log(fechaHoy);
+
+
+

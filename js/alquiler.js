@@ -209,7 +209,8 @@ function buscarInfo(buscado, array) {
   let busquedaArray = array.filter(
     (Lote) =>
       Lote.marca.toLowerCase().includes(buscado) ||
-      Lote.modelo.toLowerCase().includes(buscado)
+      Lote.modelo.toLowerCase().includes(buscado) ||
+      Lote.sobrealimentacion.toLowerCase().includes(buscado)
   );
 
   // if (busquedaArray.length == 0) {
